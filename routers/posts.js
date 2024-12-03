@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const postsList = require("../data/posts.js")
+const posts = require('../data/posts.js')
 
 router.get('/', (req, res) => {
     res.json (postsList)
@@ -9,7 +10,10 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) =>{
     const postId = req.params.id
-    res.json(`Mostra il post con ID numero ${postId}`)
+    const myPost = posts.find((post) => {
+        return post.id === postId;
+    })
+    res.json(myPost)
 })
 //show
 
